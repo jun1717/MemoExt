@@ -1,21 +1,52 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import firebase from 'firebase';
+// import Appbar from './src/components/Appbar';
+import MemoListScreen from './src/screens/MemoListScreen';
+import MemoDetailScreen from './src/screens/MemoDetailScreen';
+import MemoEditScreen from './src/screens/MemoEditScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import SignupScreen from './src/screens/SignupScreen';
+import MemoCreate from './src/screens/MemoCreateScreen';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Hi!!</Text>
-      </View>
-    );
-  }
-}
+import ENV from './env.json';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+// eslint-disable-next-line
+require("firebase/firestore");
+
+// Initialize Firebase
+const config = {
+  apiKey: ENV.FIREBASE_API_KEY,
+  authDomain: ENV.FIREBASE_AUTH_DOMAIN,
+  databaseURL: ENV.FIREBASE_DB_URL,
+  projectId: ENV.FIREBASE_PRJ_ID,
+  storageBucket: ENV.FIREBASE_STORAGE,
+  messagingSenderId: ENV.FIREBASE_SENDER_ID,
+};
+firebase.initializeApp(config);
+
+const App = StackNavigator(
+  {
+    MemoLogin: { screen: LoginScreen },
+    Signup: { screen: SignupScreen },
+    Home: { screen: MemoListScreen },
+    MemoDetail: { screen: MemoDetailScreen },
+    MemoEdit: { screen: MemoEditScreen },
+    MemoCreate: { screen: MemoCreate },
   },
-});
+  {
+    navigationOptions: {
+      headerTitle: 'MemotExt',
+      headerStyle: {
+        backgroundColor: '#265366',
+      },
+      headerTitleStyle: {
+        color: '#fff',
+      },
+      headerTintColor: '#fff',
+      headerBackTitle: null,
+    },
+  },
+);
+
+
+export default App;
