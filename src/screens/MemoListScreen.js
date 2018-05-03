@@ -1,11 +1,16 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Button } from 'react-native';
 import firebase from 'firebase';
 
 import MemoList from '../../src/components/MemoList';
 import CircleButton from '../../src/elements/CircleButton';
 
 class MemoListScreen extends React.Component {
+  static navigationOptions = () => {
+    return {
+      headerRight: <Button title="logout" onPress={() => { console.log('aaa'); }} />,
+    };
+  }
   state = {
     memoList: [],
   }
