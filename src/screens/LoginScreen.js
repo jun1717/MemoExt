@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, TouchableHighlight, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TextInput, TouchableHighlight, Text, TouchableOpacity, Alert } from 'react-native';
 import firebase from 'firebase';
 import { NavigationActions } from 'react-navigation';
 
@@ -22,6 +22,7 @@ class LoginScreen extends React.Component {
       })
       .catch((error) => {
         console.log('login error', error);
+        Alert.alert('ログインエラー', 'IDかパスワードが間違っています。');
       });
   }
   handlePress() {
