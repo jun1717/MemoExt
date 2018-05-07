@@ -24,7 +24,7 @@ class MemoDetailScreen extends React.Component {
       <View style={styles.container}>
         <View>
           <View style={styles.memoHeader}>
-            <Text style={styles.memoHeaderTitle}>{memo.body.substring(0, 10)}</Text>
+            <Text style={styles.memoHeaderTitle}>{memo.title}</Text>
             <Text style={styles.memoHeaderDate}>{dateString(memo.created_on)}</Text>
           </View>
         </View>
