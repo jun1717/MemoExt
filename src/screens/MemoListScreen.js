@@ -1,14 +1,33 @@
 import React from 'react';
 import { View, StyleSheet, Button } from 'react-native';
 import firebase from 'firebase';
+import { NavigationActions } from 'react-navigation';
 
 import MemoList from '../../src/components/MemoList';
 import CircleButton from '../../src/elements/CircleButton';
 
 class MemoListScreen extends React.Component {
-  static navigationOptions = () => {
+  static navigationOptions = ({ navigation }) => {
     return {
-      headerRight: <Button title="logout" onPress={() => { console.log('aaa'); }} />,
+      headerRight: <Button
+        title="logout"
+        onPress={() => {
+          firebase.auth().signOut()
+            .then(() => {
+              console.log('logout success');
+              const resetAction = NavigationActions.reset({
+                index: 0,
+                actions: [
+                  NavigationActions.navigate({ routeName: 'MemoLogin' }),
+                ],
+              });
+              navigation.dispatch(resetAction);
+            })
+            .catch((error) => {
+              console.log('logout error', error);
+            });
+        }}
+      />,
     };
   }
   state = {
