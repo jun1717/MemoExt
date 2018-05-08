@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   memoHeaderDate: {
-    fontSize: 12,
+    fontSize: 16,
     color: '#fff',
   },
   memoContent: {

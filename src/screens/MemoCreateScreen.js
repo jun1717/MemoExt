@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Text } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView, View, TextInput, Text } from 'react-native';
 import firebase from 'firebase';
 import CircleButton from '../elements/CircleButton';
 
@@ -25,7 +25,7 @@ class MemoCreateScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="height" keyboardVerticalOffset={40}>
         <View style={styles.titleInput}>
           <Text style={styles.label}>
             Title
@@ -51,7 +51,7 @@ class MemoCreateScreen extends React.Component {
         <CircleButton onPress={this.handlePress.bind(this)}>
           {'\uf00c'}
         </CircleButton>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -60,9 +60,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+    backgroundColor: '#FFFDF6',
   },
   label: {
-    fontSize: 28,
+    fontSize: 24,
     paddingLeft: 30,
     paddingBottom: 5,
   },
@@ -74,6 +75,7 @@ const styles = StyleSheet.create({
   },
   titleEditInput: {
     backgroundColor: '#fff',
+    borderColor: '#ddd',
     paddingTop: 16,
     paddingLeft: 16,
     paddingRight: 16,
@@ -87,6 +89,7 @@ const styles = StyleSheet.create({
   },
   memoEditInput: {
     backgroundColor: '#fff',
+    borderColor: '#ddd',
     paddingTop: 16,
     paddingLeft: 16,
     paddingRight: 16,
