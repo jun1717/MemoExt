@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, KeyboardAvoidingView, View, TextInput, Text } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView, View, TextInput, Text, Alert } from 'react-native';
 import firebase from 'firebase';
 import CircleButton from '../elements/CircleButton';
 
@@ -9,6 +9,10 @@ class MemoCreateScreen extends React.Component {
     title: '',
   }
   handlePress() {
+    if (this.state.body === '' || this.state.title === '') {
+      Alert.alert('記入してください');
+      return;
+    }
     const db = firebase.firestore();
     const { currentUser } = firebase.auth();
     db.collection(`users/${currentUser.uid}/memos`).add({
